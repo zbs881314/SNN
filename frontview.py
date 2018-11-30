@@ -15,6 +15,7 @@ VFOV = (-24.9, 2.0)    # Field of view (-ve, +ve) along vertical axis
 Y_FUDGE = 5
 
 #frame_range = range(155, 156, 1)
+#dataset = pykitti.raw(basedir, data, drive, frames=frame_range)
 #for frame_range in range(5):
 dataset = pykitti.raw(basedir, date, drive)
 #a=len(dataset)
@@ -114,8 +115,8 @@ def lidar_to_2d_front_view(points,
         pixel_values = -d_lidar
 
     print(pixel_values)
-    plt.scatter(-pixel_values, z_lidar)
-    plt.show()
+    #plt.scatter(-pixel_values, z_lidar)
+    #plt.show()
 
     # PLOT THE IMAGE
     cmap = "jet"            # Color map to use
