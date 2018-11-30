@@ -14,10 +14,10 @@ VRES = 0.4          # vertical res
 VFOV = (-24.9, 2.0)    # Field of view (-ve, +ve) along vertical axis
 Y_FUDGE = 5
 
-#frame_range = range(155, 156, 1)
-#dataset = pykitti.raw(basedir, data, drive, frames=frame_range)
+frame_range = range(155, 156, 1)
+dataset = pykitti.raw(basedir, data, drive, frames=frame_range)
 #for frame_range in range(5):
-dataset = pykitti.raw(basedir, date, drive)
+#dataset = pykitti.raw(basedir, date, drive)
 #a=len(dataset)
 
 def lidar_to_2d_front_view(points,
