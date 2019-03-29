@@ -15,7 +15,7 @@ VFOV = (-24.9, 2.0)    # Field of view (-ve, +ve) along vertical axis
 Y_FUDGE = 5
 
 frame_range = range(155, 156, 1)
-dataset = pykitti.raw(basedir, data, drive, frames=frame_range)
+dataset = pykitti.raw(basedir, date, drive, frames=frame_range)
 #for frame_range in range(5):
 #dataset = pykitti.raw(basedir, date, drive)
 #a=len(dataset)
@@ -114,7 +114,7 @@ def lidar_to_2d_front_view(points,
     else:
         pixel_values = -d_lidar
 
-    print(pixel_values)
+    print(len(pixel_values))
     #plt.scatter(-pixel_values, z_lidar)
     #plt.show()
 
@@ -153,5 +153,5 @@ for points in dataset.velo:
     #break
     #lidar_to_2d_front_view(points, v_res=VRES, h_res=HRES, v_fov=VFOV, val='height', saveto='/home/bob/Downloads/lidar_depth.png', y_fudge=Y_FUDGE)
     #lidar_to_2d_front_view(points, v_res=VRES, h_res=HRES, v_fov=VFOV, val='reflectance', saveto='/home/bob/Downloads/lidar_depth.png', y_fudge=Y_FUDGE)
-
+    
 
