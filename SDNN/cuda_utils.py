@@ -139,21 +139,21 @@ def lateral_inh(S, V, K_inh):
 
 @cuda.jit(argtypes=[float32[:, :], float32[:, :], uint8[;], uint8])
 
-def DoG_norm(img_out, img_in, img_size, win_size):
+def DoG_norm(img_out, img_in, image_size, win_size):
 
     idx, idy = cuda.grid(2)
-    if idx > img_size[0] - 1:
+    if idx > image_size[0] - 1:
         return
-    if idy > img_size[0] - 1:
+    if idy > image_size[0] - 1:
         return
 
     sumation = 0.0001
 
     j = 0 if idy - win_size < 0 else idy - win_size
-    while j <= (img_size[1] - 1 if idy + win_size > img_size[1] - 1 else idy + win_size):
+    while j <= (image_size[1] - 1 if idy + win_size > image_size[1] - 1 else idy + win_size):
         i = 0 if idx - win_size < 0 else idx - win_size
 
-        while i <= (img_size[0] - 1 if idx + win_size > img_size[0] - 1 else idx + win_size):
+        while i <= (image_size[0] - 1 if idx + win_size > image_size[0] - 1 else idx + win_size):
             sumation += img_in[i, j]
             i += 1
 
