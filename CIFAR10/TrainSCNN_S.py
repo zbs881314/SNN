@@ -9,11 +9,11 @@ import os
 
 K = 100
 K2 = 1e-2
-TRAINING_BATCH = 10
-TRAINING_EPOCHES = 200
+TRAINING_BATCH = 128
+TRAINING_EPOCHES = 100
 learning_start = 1e-3
 learning_end = 1e-5
-lr_decay = (learning_end / learning_start) ** (1. / 200)
+lr_decay = (learning_end / learning_start) ** (1. / 100)
 
 
 
@@ -103,7 +103,7 @@ writer = tf.compat.v1.summary.FileWriter('./logs_cfar_f2', sess.graph)
 
 scale = 3
 
-BATCH_SIZE = 10
+BATCH_SIZE = 128
 SAVE_PATH = os.getcwd() + '/weight_CFAR_F2'
 
 cfar10 = Cifar10.CFAR10()
