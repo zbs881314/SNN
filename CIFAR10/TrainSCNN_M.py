@@ -9,7 +9,7 @@ import os
 
 K = 100
 K2 = 1e-2
-TRAINING_BATCH = 5
+TRAINING_BATCH = 128
 TRAINING_EPOCHES = 200
 learning_start = 1e-3
 learning_end = 1e-5
@@ -115,7 +115,7 @@ writer = tf.compat.v1.summary.FileWriter('./logs_cfar_b', sess.graph)
 
 scale = 3
 
-BATCH_SIZE = 5
+BATCH_SIZE = 128
 SAVE_PATH = os.getcwd() + '/weight_CFAR_B'
 cfar10 = Cifar10_with_data_augmentation.CFAR10()
 
@@ -126,7 +126,7 @@ for epoch in range(TRAINING_EPOCHES):
     for iteration in range(5000):
         xs_1, xs, ys, ys_1 = cfar10.next_batch(batch_size=BATCH_SIZE, shuffle=True)
         xs = scale * xs
-        [result,c,l,lo,_] = sess.run([merged,cost,output_loss,layerout7,train_op], {input_real: xs, output_real: ys, lr:learning_start})
+        [result,c,l,lo,_] = sess.run([merged,cost,output_loss,layerout7,train_op], {input_real: xs, output_real: ys, lr:learning_start * lr_decay ** epoch})
         step = sess.run(step_inc_op)
         writer.add_summary(result, step * 10)
         if step % 10 == 0:
