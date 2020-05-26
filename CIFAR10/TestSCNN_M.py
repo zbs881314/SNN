@@ -8,7 +8,7 @@ import os
 from keras.utils import to_categorical
 
 
-TRAINING_BATCH = 10
+TRAINING_BATCH = 128
 
 
 input_real = tf.placeholder(tf.float32)
@@ -74,7 +74,7 @@ print("Testing started")
 
 scale = 3
 
-BATCH_SIZE = 10
+BATCH_SIZE = 128
 cfar10 = CFAR10.KittiData(path=["KITTI/train_y.npy", "KITTI/label_y.npy"])
 
 accuracy = []
@@ -88,7 +88,7 @@ while(True):
     for i in range(len(ys)):
         if (layerout[i] == ys[i]).all():
             accurate = accurate + 1
-    accurate = accurate / 10.
+    accurate = accurate / 128.
     # print(accurate)
     accuracy.append(accurate)
     step = sess.run(step_inc_op)
@@ -96,5 +96,5 @@ while(True):
         accurate1 = tf.reduce_mean(accuracy)
         print('Step: ' + repr(step) + ', ' + 'Accurate: ' + repr(sess.run(accurate1)))
 
-    if step == 1000:
+    if step == 78:
         break
