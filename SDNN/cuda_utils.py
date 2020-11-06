@@ -3,6 +3,27 @@ from numba import *
 from numba import cuda
 
 
+"test the enviroment"
+
+dev conv_step(S, V, s, w, stride, th):
+    idx, idy, idz = cuda.grid(3)
+    if idx > V.shape[0] - 1:
+        return
+    if idy > V.shape[1] -1:
+        return
+    if idz > V.shape[1] -1:
+        return
+    if V[idx, idy, idz] > th:
+        V[idx, idy, idz] = 0.
+
+    result = 0.
+    for k in range(w.shape[2]):
+        for j in range(w.shape[1]):
+             for i in range(w.shape[0]):
+"end test"
+
+
+
 "' cuda kernel implementation '"
 
 @cuda.jit(argtypes=[uint8[:, :, :], float32[:, :, :], uint8[:, :, :], float32[:, :, :],
